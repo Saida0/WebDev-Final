@@ -20,6 +20,8 @@ const AllInstructorsView = (props) => {
         );
 
       })}
+
+      <div><Link to={'/'} > <button>Back to Home</button> </Link></div>
     </div>
   );
 };
