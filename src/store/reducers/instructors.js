@@ -1,5 +1,4 @@
 import * as at from '../actions/actionTypes';
-import course from './course';
 
 // REDUCER;
 const allInstructors = (state = [], action) => {
