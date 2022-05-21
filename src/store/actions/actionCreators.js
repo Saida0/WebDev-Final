@@ -13,10 +13,31 @@ export const fetchAllInstructors = (instructors) => {
   };
 };
 
+export const addInstructor = (instructor) => {
+  return {
+    type: at.ADD_INSTRUCTOR,
+    payload: instructor,
+  };
+};
+
 //Single instructor
 export const fetchInstructor = (instructor) => {
   return {
     type: at.FETCH_INSTRUCTOR,
+    payload: instructor,
+  };
+};
+
+export const deleteInstructor = (instructorId) => {
+  return {
+    type: at.DELETE_INSTRUCTOR,
+    payload: instructorId,
+  };
+};
+
+export const EDIT_INSTRUCTOR = (instructor) => {
+  return {
+    type: at.EDIT_INSTRUCTOR,
     payload: instructor,
   };
 };
@@ -35,6 +56,8 @@ export const addCourse = (course) => {
     payload: course,
   };
 };
+
+
 
 export const deleteCourse = (courseId) => {
   return {
