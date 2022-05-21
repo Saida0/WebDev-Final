@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const CourseView = (props) => {
   const { course } = props;
   return (
@@ -10,7 +11,9 @@ const CourseView = (props) => {
       ) : (
         <h3>staff</h3>
       )}
+      <div><Link to={'/'} > <button>Back to Home</button> </Link></div>
     </div>
+    
   );
 };
 

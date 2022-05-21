@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 
 
 const NewCourseView = (props) => {
@@ -35,6 +35,7 @@ const NewCourseView = (props) => {
           <br/>
         </form>
         </div>
+        <div><Link to={'/'} > <button>Back to Home</button> </Link></div>
       </div>
     
   )
