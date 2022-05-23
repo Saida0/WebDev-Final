@@ -28,6 +28,11 @@ const NewCourseView = (props) => {
           <br/>
           <br/>
 
+          <label style={{color:'#11153e', fontWeight: 'bold'}}>Location: </label>
+          <input type="text" name="location" onChange={(e) => handleChange(e)} />
+          <br/>
+          <br/>
+
           <button type="submit">
             Submit
           </button>
