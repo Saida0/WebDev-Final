@@ -15,11 +15,11 @@ const AllInstructorsView = (props) => {
   return (
     <div>
      {  props.allInstructors.map((instructor) => {
-        let name = instructor.firstname + " " + instructor.lastname;
+        let name = instructor.firstname + " " + instructor.lastname; 
         return (
           <div key={instructor.id}>
           <Link to={`/instructor/${instructor.id}`}>
-            <h1>{name}</h1>
+            <h1>{name} <button> X </button> </h1>
         </Link>
           <p>{instructor.department}</p>
         </div>
