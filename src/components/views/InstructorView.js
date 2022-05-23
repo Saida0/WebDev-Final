@@ -11,6 +11,7 @@ const InstructorView = (props) => {
 
   return (
     <div>
+      <img src = {instructor.imageUrl} alt={instructor.firstname}/>
       <h1>{instructor.firstname}</h1>
       <h3>{instructor.department}</h3>
       <div
