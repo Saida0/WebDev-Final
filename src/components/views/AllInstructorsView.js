@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AllInstructorsView = (props) => {
   if (!props.allInstructors.length) {
     return(
-      <div>There are no instructors.
+      <div>There are currently no instructors.
         <Link to={`/newinstructor`}>
           <button>Add New Instructor</button>
         </Link>
@@ -14,18 +14,17 @@ const AllInstructorsView = (props) => {
 
   return (
     <div>
-      {props.allInstructors.map((instructor) => {
+     {  props.allInstructors.map((instructor) => {
         let name = instructor.firstname + " " + instructor.lastname;
         return (
           <div key={instructor.id}>
           <Link to={`/instructor/${instructor.id}`}>
             <h1>{name}</h1>
-          </Link>
+        </Link>
           <p>{instructor.department}</p>
         </div>
         );
-
-      })}
+      })} 
         <div><Link to={`/newinstructor`}>
           <button>Add New Instructor</button>
         </Link></div>
