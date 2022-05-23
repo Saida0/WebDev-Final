@@ -2,30 +2,32 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const AllInstructorsView = (props) => {
+  let {instructors, deleteInstructor} = props;
   if (!props.allInstructors.length) {
     return(
-      <div>There are no instructors.
+      <div>There are currently no instructors.
         <Link to={`/newinstructor`}>
           <button>Add New Instructor</button>
         </Link>
+        <div><Link to={'/'} > <button>Back to Home</button> </Link></div>
       </div>
     );
   }
 
   return (
     <div>
-      {props.allInstructors.map((instructor) => {
-        let name = instructor.firstname + " " + instructor.lastname;
+     {  props.allInstructors.map((instructor) => {
+        let name = instructor.firstname + " " + instructor.lastname; 
         return (
           <div key={instructor.id}>
           <Link to={`/instructor/${instructor.id}`}>
             <h1>{name}</h1>
-          </Link>
+        </Link>
+          <button onClick={() => deleteInstructor(instructor.id)}>X</button> 
           <p>{instructor.department}</p>
         </div>
         );
-
-      })}
+      })} 
         <div><Link to={`/newinstructor`}>
           <button>Add New Instructor</button>
         </Link></div>
