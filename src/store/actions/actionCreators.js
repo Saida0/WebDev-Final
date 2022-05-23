@@ -35,7 +35,7 @@ export const deleteInstructor = (instructorId) => {
   };
 };
 
-export const EDIT_INSTRUCTOR = (instructor) => {
+export const editInstructor = (instructor) => {
   return {
     type: at.EDIT_INSTRUCTOR,
     payload: instructor,

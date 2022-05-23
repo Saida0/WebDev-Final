@@ -61,6 +61,9 @@ const InstructorView = (props) => {
         </div>
       </div>
       <div><Link to={'/'} > <button>Back to Home</button> </Link></div>
+      <div><Link to={`/editinstructor`}>
+          <button>edit Instructor</button>
+        </Link></div>
     </div>
   );
 };

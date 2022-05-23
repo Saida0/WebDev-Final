@@ -36,6 +36,4 @@ const AllCoursesView = (props) => {
     </div>
   );
 };
-
-
 export default AllCoursesView;

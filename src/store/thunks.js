@@ -62,6 +62,16 @@ export const deleteInstructorThunk = (instructorId) => async (dispatch) => {
   }
 };
 
+export const editInstructorThunk = (instructor) => async (dispatch) => {
+  try {
+    let res = await axios.put(`${path}/instructors/${instructor.id}`, instructor);
+    //res.data is the updated course object
+    dispatch(ac.editCourse(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const addCourseThunk = (course) => async (dispatch) => {
   // course = { title: "CSCI 127" }
   try {
