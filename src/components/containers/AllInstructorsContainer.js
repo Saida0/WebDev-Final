@@ -1,8 +1,14 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchAllInstructorsThunk } from "../../store/thunks";
-import { AllInstructorsView } from "../views";
+
+
+import {
+  fetchAllInstructorsThunk,
+  deleteInstructorThunk
+} from "../../store/thunks";
+
+import  AllInstructorsView  from "../views/AllInstructorsView";
 
 class AllInstructorsContainer extends Component {
   componentDidMount() {
@@ -12,9 +18,12 @@ class AllInstructorsContainer extends Component {
 
   render() {
     return (
-      <AllInstructorsView
-        allInstructors={this.props.allInstructors}
-      />
+      <div>
+        <AllInstructorsView
+          allInstructors={this.props.allInstructors}
+          deleteInstructor={this.props.deleteInstructor} 
+        />
+      </div>
     );
   }
 }
@@ -30,6 +39,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllInstructors: () => dispatch(fetchAllInstructorsThunk()),
+    deleteInstructor: (instructorId) => dispatch(deleteInstructorThunk(instructorId)),
   };
 };
 
