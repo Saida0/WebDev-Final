@@ -3,17 +3,19 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import NewInstructorView from '../views/NewInstructorView';
-import { addInstructorThunk } from '../../store/thunks';
+import { addInstructorThunk, fetchAllInstructorsThunk } from '../../store/thunks';
+import { fetchAllInstructors } from '../../store/actions/actionCreators';
 
 
 class NewInstructorContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-          title: "", 
-          timeslot: "",
-          location: "", 
-          instructorId: null, 
+          firstname: "", 
+          lastname: "",
+          department: "", 
+          imageUrl: "", 
+          courses:[],
           redirect: false, 
           redirectId: null
         };
@@ -27,7 +29,6 @@ class NewInstructorContainer extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-
         let instructor = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
@@ -39,6 +40,7 @@ class NewInstructorContainer extends Component {
         let newInstructor = await this.props.addInstructor(instructor);
 
         this.setState({
+        
           firstname: this.state.firstname,
           lastname: this.state.lastname,
           department: null,
@@ -70,6 +72,7 @@ class NewInstructorContainer extends Component {
 const mapDispatch = (dispatch) => {
     return({
         addInstructor: (instructor) => dispatch(addInstructorThunk(instructor)),
+        fetchAllInstructors: () => dispatch(fetchAllInstructorsThunk()),
     })
 }
 
