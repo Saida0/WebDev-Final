@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-const NewInstructorView = (props) => {
-  const { handleChange, handleSubmit } = props;
+const EditInstructorView = (props) => {
+  const { instructor, handleChange, handleSubmit } = props;
 
   return (
     <div className="root">
@@ -15,7 +15,7 @@ const NewInstructorView = (props) => {
               color: '#11153e',
             }}
           >
-            New Instructor
+            Edit Instructor
           </h2>
         </div>
         <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
@@ -25,6 +25,7 @@ const NewInstructorView = (props) => {
           <input
             type="text"
             name="firstname"
+            defaultValue={instructor.firstname}
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -36,6 +37,7 @@ const NewInstructorView = (props) => {
           <input
             type="text"
             name="lastname"
+            defaultValue={instructor.lastname}
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -47,6 +49,7 @@ const NewInstructorView = (props) => {
           <input
             type="text"
             name="department"
+            defaultValue={instructor.department}
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -58,6 +61,7 @@ const NewInstructorView = (props) => {
           <input
             type="text"
             name="imageUrl"
+            defaultValue={instructor.imageUrl}
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -77,4 +81,4 @@ const NewInstructorView = (props) => {
   );
 };
 
-export default NewInstructorView;
+export default EditInstructorView;

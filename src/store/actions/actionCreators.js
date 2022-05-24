@@ -35,7 +35,7 @@ export const deleteInstructor = (instructorId) => {
   };
 };
 
-export const EDIT_INSTRUCTOR = (instructor) => {
+export const editInstructor = (instructor) => {
   return {
     type: at.EDIT_INSTRUCTOR,
     payload: instructor,
@@ -57,15 +57,12 @@ export const addCourse = (course) => {
   };
 };
 
-
-
 export const deleteCourse = (courseId) => {
   return {
     type: at.DELETE_COURSE,
     payload: courseId,
   };
 };
-
 
 export const editCourse = (course) => {
   return {

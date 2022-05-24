@@ -11,9 +11,11 @@ const InstructorView = (props) => {
 
   return (
     <div>
-      <img src = {instructor.imageUrl} alt={instructor.firstname}/>
-      <h1>{instructor.firstname}</h1>
-      <h3>{instructor.department}</h3>
+      {instructor.imageUrl && (
+        <img src={instructor.imageUrl} alt={instructor.firstname} />
+      )}
+      <h1>First Name: {instructor.firstname}</h1>
+      <h3>Department: {instructor.department}</h3>
       <div
         style={{
           display: 'flex',
@@ -23,13 +25,25 @@ const InstructorView = (props) => {
       >
         <div>
           Assigned courses:
-          {assignedCourses.map((course) => {
+          {!assignedCourses.length && <p>This instructor has no assigned courses.</p>}
+          {assignedCourses.length > 0 && assignedCourses.map((course) => {
             return (
-              <div key={course.id}>
-                <Link to={`/course/${course.id}`}>
-                  <h4>{course.title}</h4>
+              <div
+                key={course.id}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Link
+                  to={`/course/${course.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <h4 style={{marginBlock:5}}>{course.title}</h4>
                 </Link>
                 <button
+                  style={{ marginLeft: 10 }}
                   onClick={() =>
                     editCourse({ id: course.id, instructorId: null })
                   }
@@ -42,13 +56,25 @@ const InstructorView = (props) => {
         </div>
         <div>
           Available courses:
-          {availableCourses.map((course) => {
+          {!availableCourses.length && <p>There are no available courses.</p>}
+          {availableCourses.length > 0 && availableCourses.map((course) => {
             return (
-              <div key={course.id}>
-                <Link to={`/course/${course.id}`}>
-                  <h4>{course.title}</h4>
+              <div
+                key={course.id}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Link
+                  to={`/course/${course.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <h4 style={{marginBlock:5}}>{course.title}</h4>
                 </Link>
                 <button
+                  style={{ marginLeft: 10 }}
                   onClick={() =>
                     editCourse({ id: course.id, instructorId: instructor.id })
                   }
@@ -60,7 +86,19 @@ const InstructorView = (props) => {
           })}
         </div>
       </div>
-      <div><Link to={'/'} > <button>Back to Home</button> </Link></div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <Link to={`/instructor/edit/${instructor.id}`}>
+          <button>Edit</button>
+        </Link>
+        <Link to={'/'}>
+          <button style={{ marginTop: '15px' }}>Back to Home</button>
+        </Link>
+      </div>
     </div>
   );
 };

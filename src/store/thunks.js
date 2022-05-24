@@ -42,6 +42,18 @@ export const addInstructorThunk = (instructor) => async (dispatch) => {
     console.error(err);
   }
 };
+export const editInstructorThunk = (instructor) => async (dispatch) => {
+  try {
+    let res = await axios.put(
+      `${path}/instructors/${instructor.id}`,
+      instructor
+    );
+    dispatch(ac.editInstructor(res.data));
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 //All courses
 export const fetchAllCoursesThunk = () => async (dispatch) => {
