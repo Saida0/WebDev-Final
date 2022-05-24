@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-const NewInstructorView = (props) => {
-  const { handleChange, handleSubmit } = props;
+const EditCourseView = (props) => {
+  const { course, handleChange, handleSubmit } = props;
 
   return (
     <div className="root">
       <div className="formContainer">
-        <div className="formFirstName">
+        <div className="formTitle">
           <h2
             style={{
               fontWeight: 'bold',
@@ -15,49 +15,53 @@ const NewInstructorView = (props) => {
               color: '#11153e',
             }}
           >
-            New Instructor
+            Edit Course
           </h2>
         </div>
         <form style={{ textAlign: 'center' }} onSubmit={(e) => handleSubmit(e)}>
           <label style={{ color: '#11153e', fontWeight: 'bold' }}>
-            First Name:{' '}
+            Title:{' '}
           </label>
           <input
             type="text"
-            name="firstname"
+            name="title"
+            defaultValue={course.title}
             onChange={(e) => handleChange(e)}
           />
           <br />
           <br />
 
           <label style={{ color: '#11153e', fontWeight: 'bold' }}>
-            Last Name:{' '}
+            Timeslot:{' '}
           </label>
           <input
             type="text"
-            name="lastname"
+            name="timeslot"
+            defaultValue={course.timeslot}
             onChange={(e) => handleChange(e)}
           />
           <br />
           <br />
 
           <label style={{ color: '#11153e', fontWeight: 'bold' }}>
-            Department:{' '}
+            Instructor Id:{' '}
           </label>
           <input
             type="text"
-            name="department"
+            name="instructorId"
+            defaultValue={course.instructorId}
             onChange={(e) => handleChange(e)}
           />
           <br />
           <br />
 
           <label style={{ color: '#11153e', fontWeight: 'bold' }}>
-            Image URL:{' '}
+            Location:{' '}
           </label>
           <input
             type="text"
-            name="imageUrl"
+            name="location"
+            defaultValue={course.location}
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -77,4 +81,4 @@ const NewInstructorView = (props) => {
   );
 };
 
-export default NewInstructorView;
+export default EditCourseView;

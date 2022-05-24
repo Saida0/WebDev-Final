@@ -2,21 +2,28 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import NewInstructorView from '../views/NewInstructorView';
-import { addInstructorThunk } from '../../store/thunks';
+import EditInstructorView from '../views/EditInstructorView';
+import { editInstructorThunk, fetchInstructorThunk } from '../../store/thunks';
 
-class NewInstructorContainer extends Component {
+class EditInstructorContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
-      department: '',
-      imageUrl: null,
-      courses: [],
+      title: '',
+      timeslot: '',
+      location: '',
+      instructorId: null,
       redirect: false,
       redirectId: null,
     };
+  }
+
+  componentDidMount() {
+    this.props.fetchInstructor(this.props.match.params.id);
+  }
+
+  componentWillUnmount() {
+    this.setState({ redirect: false, redirectId: null });
   }
 
   handleChange = (event) => {
@@ -29,6 +36,7 @@ class NewInstructorContainer extends Component {
     event.preventDefault();
 
     let instructor = {
+      id: this.props.instructor.id,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       department: this.state.department,
@@ -43,8 +51,7 @@ class NewInstructorContainer extends Component {
     ) {
       alert('Fields cannot be empty');
     } else {
-      const newInstructor = await this.props.addInstructor(instructor);
-
+      await this.props.editInstructor(instructor);
       this.setState({
         firstname: this.state.firstname,
         lastname: this.state.lastname,
@@ -52,22 +59,20 @@ class NewInstructorContainer extends Component {
         imageUrl: null,
         courses: [],
         redirect: true,
-        redirectId: newInstructor.id,
+        redirectId: this.props.instructor.id,
       });
     }
   };
-
-  componentWillUnmount() {
-    this.setState({ redirect: false, redirectId: null });
-  }
 
   render() {
     //go to single instructor view of newly created instructor
     if (this.state.redirect) {
       return <Redirect to={`/instructor/${this.state.redirectId}`} />;
     }
+    console.log(this.props.instructor);
     return (
-      <NewInstructorView
+      <EditInstructorView
+        instructor={this.props.instructor}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />
@@ -75,10 +80,17 @@ class NewInstructorContainer extends Component {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapState = (state) => {
   return {
-    addInstructor: (instructor) => dispatch(addInstructorThunk(instructor)),
+    instructor: state.instructor,
   };
 };
 
-export default connect(null, mapDispatch)(NewInstructorContainer);
+const mapDispatch = (dispatch) => {
+  return {
+    fetchInstructor: (id) => dispatch(fetchInstructorThunk(id)),
+    editInstructor: (instructor) => dispatch(editInstructorThunk(instructor)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(EditInstructorContainer);

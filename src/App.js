@@ -1,7 +1,7 @@
-import "./App.css";
+import './App.css';
 
 //Router
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 //Components
 import {
   HomePageContainer,
@@ -10,10 +10,12 @@ import {
   AllInstructorsContainer,
   AllCoursesContainer,
   NewCourseContainer,
-  NewInstructorContainer
+  NewInstructorContainer,
+  EditCourseContainer,
+  EditInstructorContainer,
 } from './components/containers';
 
-// if you create separate components for adding/editing 
+// if you create separate components for adding/editing
 // a student or instructor, make sure you add routes to those
 // components here
 
@@ -24,15 +26,19 @@ const App = () => {
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/instructors" component={AllInstructorsContainer} />
         <Route exact path="/instructor/:id" component={InstructorContainer} />
+        <Route
+          exact
+          path="/instructor/edit/:id"
+          component={EditInstructorContainer}
+        />
         <Route exact path="/courses" component={AllCoursesContainer} />
         <Route exact path="/newcourse" component={NewCourseContainer} />
         <Route exact path="/newinstructor" component={NewInstructorContainer} />
         <Route exact path="/course/:id" component={CourseContainer} />
-
-      </Switch>        
+        <Route exact path="/course/edit/:id" component={EditCourseContainer} />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
-
